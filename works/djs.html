@@ -1,0 +1,84 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>超酷数码钟表</title>
+<link href="css/djs.css" rel="stylesheet" type="text/css" />
+<script>
+function fillZero(n){
+	return n<10?'0'+n:''+n;	
+}
+function getByClass(oParent,sClass){
+	var aResult=[];
+	var aEle=oParent.getElementsByTagName("*");
+	for(var i=0;i<aEle.length;i++){
+		if(aEle[i].className==sClass){
+			aResult.push(aEle[i]);
+		}
+	}
+	return aResult;
+};
+
+window.onload=function(){
+	var oDiv2=document.getElementById("div2");
+	var aImg=getByClass(oDiv2,"num");
+	var oDiv1=document.getElementById("div1");
+	var aImg2=getByClass(oDiv1,"num");
+	var oWeek=document.getElementById("week");
+	updata();
+	setInterval(updata,1000);
+	function updata(){
+		var d=new Date();
+		var h=fillZero(d.getHours());
+		var m=fillZero(d.getMinutes());
+		var s=fillZero(d.getSeconds());
+		var w=fillZero(d.getDay());
+		var year=d.getFullYear();
+		var month=fillZero(d.getMonth()+1);
+		var day=fillZero(d.getDate());
+		var str=h+m+s;
+		var str2=year+month+day;
+		var week=['one','two','three','four','five','six','seven'];
+		for(var i=0;i<aImg.length;i++){
+			aImg[i].src='images/'+str.charAt(i)+'.png';
+		}
+		for(var i=0;i<aImg2.length;i++){
+			aImg2[i].src='images/'+str2.charAt(i)+'.png';
+		}
+		oWeek.src='images/'+week[w-1]+'.png';
+	};
+};
+</script>
+</head>
+<body>
+<div id="clock" class="date">
+    <h2><img src="images/title.png" /></h2>
+    <div class="year" id="div1">
+        <img class="num" src="images/0.png" alt="0" />
+        <img class="num" src="images/0.png" alt="0" />
+        <img class="num" src="images/0.png" alt="0" />
+        <img class="num" src="images/0.png" alt="0" />
+        <img src="images/year.png" alt="year" />
+        <img class="num" src="images/0.png" alt="0" />
+        <img class="num" src="images/0.png" alt="0" />
+        <img src="images/month.png" alt="month" />
+        <img class="num" src="images/0.png" alt="0" />
+        <img class="num" src="images/0.png" alt="0" />
+        <img src="images/seven.png" alt="seven" />
+    </div>
+    <div class="time" id="div2">
+        <img class="num" src="images/0.png" alt="0" />
+        <img class="num" src="images/0.png" alt="0" />
+        <img src="images/sign.png" alt="sign" />
+        <img class="num" src="images/0.png" alt="0" />
+        <img class="num" src="images/0.png" alt="0" />
+        <img src="images/sign.png" alt="sign" />
+        <img class="num" src="images/0.png" alt="0" />
+        <img class="num" src="images/0.png" alt="0" />
+        <img class="pos2" src="images/week.png" alt="week" />
+        <img class="num3" id="week"  alt="one" />
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无缝滚动</title>
+<style>
+*{ margin:0;padding:0;list-style:none; }
+#div1{ position:relative;width:712px; height:108px; overflow:hidden; margin:30px auto;}
+#div1 ul{ position:absolute;left:0;top:0;}
+#div1 ul li{ float:left; width:178px; height:108px; }
+</style>
+<script>
+window.onload = function(){
+	var oDiv=document.getElementById("div1");
+	var oUl=oDiv.children[0];
+	var aLi=oUl.children;
+	oUl.innerHTML=oUl.innerHTML+oUl.innerHTML;
+	oUl.style.width=aLi[0].offsetWidth*aLi.length+"px";
+	var w = oUl.offsetWidth/2;
+	var left = 0;
+	setInterval(function(){
+		left+=10;
+		document.title=left;
+		oUl.style.left=(left%w-w)%w+"px";	
+	},30);
+};
+</script>
+</head>
+<body>
+<div id="div1">
+	<ul>
+    	<li><img src="../images/wf1.jpg"/></li>
+    	<li><img src="../images/wf2.jpg"/></li>
+    	<li><img src="../images/wf3.jpg"/></li>
+    	<li><img src="../images/wf4.jpg"/></li>
+    </ul>
+</div>
+
+</body>
+</html>
